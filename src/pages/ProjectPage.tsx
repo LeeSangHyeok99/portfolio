@@ -46,7 +46,7 @@ export default function ProjectPage() {
       </header>
 
       <section className="block prose">
-        <h2>왜 만들었나</h2>
+        <h2>배경</h2>
         {p.why.map((t) => (
           <p key={t}>{t}</p>
         ))}
@@ -73,7 +73,7 @@ export default function ProjectPage() {
 
       {p.usage && (
         <section className="block">
-          <h2>사용법</h2>
+          <h2>사용 방법</h2>
           <ol className="list">
             {p.usage.map((t) => (
               <li key={t}>{t}</li>
@@ -84,7 +84,7 @@ export default function ProjectPage() {
 
       {p.did && (
       <section className="block">
-        <h2>한 일</h2>
+        <h2>주요 작업</h2>
         <ul className="list">
           {p.did.map((t) => (
             <li key={t}>{t}</li>
@@ -95,7 +95,7 @@ export default function ProjectPage() {
 
       {p.process && (
         <section className="block">
-          <h2>만든 과정</h2>
+          <h2>개발 과정</h2>
           <ol className="steps">
             {p.process.map((x) => (
               <li key={x.title} className="problem">
@@ -109,7 +109,7 @@ export default function ProjectPage() {
 
       {p.problems && (
         <section className="block">
-          <h2>막혔던 문제</h2>
+          <h2>트러블슈팅</h2>
           <div className="problems">
             {p.problems.map((x) => (
               <div key={x.title} className="problem">
@@ -123,7 +123,7 @@ export default function ProjectPage() {
 
       {p.results && (
       <section className="block">
-        <h2>결과</h2>
+        <h2>성과</h2>
         <table className="results">
           <tbody>
             {p.results.map((r) => (
