@@ -54,7 +54,7 @@ export default function ProjectPage() {
       {p.shots.length > 0 && (
         <section className="block shots">
           {p.shots.map((s) => (
-            <figure key={s.src}>
+            <figure key={s.src} className={s.narrow ? 'narrow' : undefined}>
               <a href={s.src} target="_blank" rel="noreferrer">
                 <img src={s.src} alt={s.alt} loading="lazy" />
               </a>

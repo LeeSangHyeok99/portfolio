@@ -16,6 +16,7 @@ export interface Shot {
   src: string
   alt: string
   caption: string
+  narrow?: boolean
 }
 
 export interface Project {

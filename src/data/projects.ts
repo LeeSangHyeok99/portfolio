@@ -122,7 +122,18 @@ export const projects: Project[] = [
       '코드는 Codex가 주로 썼고, 저는 직접 써 보면서 나온 문제를 다음 요구사항으로 넘겼습니다.',
       '패스키는 서버가 뚫리거나 이미 복사해 간 키까지 막지는 못합니다. 이 한계도 명세에 같이 적어 두었습니다.',
     ],
-    shots: [],
+    shots: [
+      {
+        src: '/images/hub-binance.png',
+        alt: '리소스 허브 Data 화면, Binance BTC/USDT 일별 종가와 거래대금 차트',
+        caption: 'Data 화면: 플랫폼 선택 후 차트·표·CSV 다운로드',
+      },
+      {
+        src: '/images/hub-protocol.png',
+        alt: '리소스 허브 통합 검색으로 찾은 fomo 프로토콜의 수수료와 매출 차트',
+        caption: '통합 검색으로 찾은 프로토콜의 수수료·매출',
+      },
+    ],
     links: [{ label: '데모', href: 'https://four-pillars-resource-hub.onrender.com/data' }],
   },
   {
@@ -161,7 +172,14 @@ export const projects: Project[] = [
       { label: '단위 테스트', after: '124개' },
     ],
     role: ['코드는 AI 코딩 도구와 같이 썼고, 저는 실제로 쓰면서 나온 요청을 기능으로 바꾸고 배포했습니다.'],
-    shots: [],
+    shots: [
+      {
+        src: '/images/publich-main.png',
+        alt: 'Publich 포맷 변환 화면. Sector 선택, Notion 링크 입력, 국문·영문 본문, 텔레그램 복사 버튼',
+        caption: '포맷 변환 화면 (원문을 불러오기 전 상태)',
+        narrow: true,
+      },
+    ],
   },
 ]
 

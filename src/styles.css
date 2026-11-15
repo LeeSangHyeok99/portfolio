@@ -342,6 +342,10 @@ section.prose:first-of-type {
   margin: 0;
 }
 
+.shots figure.narrow {
+  max-width: 480px;
+}
+
 .shots img {
   display: block;
   width: 100%;
