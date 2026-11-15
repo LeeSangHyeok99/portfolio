@@ -1,4 +1,4 @@
-export type Area = '데이터·차트' | '웹 서비스' | '업무 자동화'
+export type Area = '데이터와 차트' | '웹 서비스' | '업무 자동화'
 
 export interface Problem {
   title: string
@@ -28,10 +28,12 @@ export interface Project {
   summary: string
   stack: string[]
   why: string[]
-  did: string[]
-  problems: Problem[]
-  results: Result[]
-  role: string[]
+  did?: string[]
+  usage?: string[]
+  problems?: Problem[]
+  process?: Problem[]
+  results?: Result[]
+  role?: string[]
   shots: Shot[]
   links?: { label: string; href: string }[]
   related?: { title: string; body: string }[]

@@ -8,7 +8,8 @@ export default function ProjectPage() {
   if (!p) return <NotFound />
 
   const index = projects.findIndex((x) => x.slug === p.slug)
-  const next = projects[(index + 1) % projects.length]
+  const prev = index > 0 ? projects[index - 1] : undefined
+  const next = index < projects.length - 1 ? projects[index + 1] : undefined
 
   return (
     <article className="page">
@@ -29,7 +30,7 @@ export default function ProjectPage() {
           )}
           <div>
             <dt>기술</dt>
-            <dd>{p.stack.join(' · ')}</dd>
+            <dd>{p.stack.join(', ')}</dd>
           </div>
           {p.links?.map((l) => (
             <div key={l.href}>
@@ -52,7 +53,13 @@ export default function ProjectPage() {
       </section>
 
       {p.shots.length > 0 && (
-        <section className="block shots">
+        <section
+          className={
+            p.shots.length > 1 && p.shots.every((s) => s.narrow)
+              ? 'block shots shots-pair'
+              : 'block shots'
+          }
+        >
           {p.shots.map((s) => (
             <figure key={s.src} className={s.narrow ? 'narrow' : undefined}>
               <a href={s.src} target="_blank" rel="noreferrer">
@@ -64,6 +71,18 @@ export default function ProjectPage() {
         </section>
       )}
 
+      {p.usage && (
+        <section className="block">
+          <h2>사용법</h2>
+          <ol className="list">
+            {p.usage.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {p.did && (
       <section className="block">
         <h2>한 일</h2>
         <ul className="list">
@@ -72,19 +91,37 @@ export default function ProjectPage() {
           ))}
         </ul>
       </section>
+      )}
 
-      <section className="block">
-        <h2>막혔던 문제</h2>
-        <div className="problems">
-          {p.problems.map((x) => (
-            <div key={x.title} className="problem">
-              <h3>{x.title}</h3>
-              <p>{x.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {p.process && (
+        <section className="block">
+          <h2>만든 과정</h2>
+          <ol className="steps">
+            {p.process.map((x) => (
+              <li key={x.title} className="problem">
+                <h3>{x.title}</h3>
+                <p>{x.body}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
 
+      {p.problems && (
+        <section className="block">
+          <h2>막혔던 문제</h2>
+          <div className="problems">
+            {p.problems.map((x) => (
+              <div key={x.title} className="problem">
+                <h3>{x.title}</h3>
+                <p>{x.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {p.results && (
       <section className="block">
         <h2>결과</h2>
         <table className="results">
@@ -109,13 +146,16 @@ export default function ProjectPage() {
           </tbody>
         </table>
       </section>
+      )}
 
-      <section className="block prose">
-        <h2>내 역할</h2>
-        {p.role.map((t) => (
-          <p key={t}>{t}</p>
-        ))}
-      </section>
+      {p.role && (
+        <section className="block prose">
+          <h2>내 역할</h2>
+          {p.role.map((t) => (
+            <p key={t}>{t}</p>
+          ))}
+        </section>
+      )}
 
       {p.related && (
         <section className="block">
@@ -131,12 +171,20 @@ export default function ProjectPage() {
         </section>
       )}
 
-      <footer className="page-foot">
-        <Link to={`/projects/${next.slug}`} className="next">
-          <span className="muted small">다음 프로젝트</span>
-          <span>{next.title}</span>
-        </Link>
-      </footer>
+      <nav className="page-foot" aria-label="프로젝트 이동">
+        {prev && (
+          <Link to={`/projects/${prev.slug}`} className="pager pager-prev">
+            <span className="muted small">← 이전 프로젝트</span>
+            <span className="pager-title">{prev.title}</span>
+          </Link>
+        )}
+        {next && (
+          <Link to={`/projects/${next.slug}`} className="pager pager-next">
+            <span className="muted small">다음 프로젝트 →</span>
+            <span className="pager-title">{next.title}</span>
+          </Link>
+        )}
+      </nav>
     </article>
   )
 }

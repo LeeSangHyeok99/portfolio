@@ -3,19 +3,44 @@ import { profile } from '../data/profile'
 import { projects } from '../data/projects'
 
 export default function Home() {
-  const { job } = profile
+  const { job, education, military } = profile
 
   return (
     <article className="page">
-      <header className="page-head">
-        <p className="eyebrow">소개</p>
-        <h1>{profile.name}</h1>
+      <header className="page-head intro-head">
+        <img className="portrait" src="/images/profile.jpg" alt={`${profile.name} 사진`} />
+        <div>
+          <p className="eyebrow">소개</p>
+          <h1>{profile.name}</h1>
+          <p className="lede">{profile.tagline}</p>
+        </div>
       </header>
 
       <section className="prose">
         {profile.intro.map((t) => (
           <p key={t}>{t}</p>
         ))}
+      </section>
+
+      <section className="block">
+        <h2>학력과 병역</h2>
+        <ul className="rows">
+          {education.map((e) => (
+            <li key={e.name} className="row">
+              <span>
+                {e.name}
+                {e.detail && <span className="muted"> {e.detail}</span>}
+              </span>
+              <span className="mono muted">
+                {e.period} {e.note}
+              </span>
+            </li>
+          ))}
+          <li className="row">
+            <span>{military.status}</span>
+            <span className="mono muted">{military.period}</span>
+          </li>
+        </ul>
       </section>
 
       <section className="block">
